@@ -1,0 +1,23 @@
+posts: list[dict] = [
+    {
+        "id": 1,
+        "author": "Rahul Verma",
+        "title": "Learning FastAPI Step by Step",
+        "content": "FastAPI makes building REST APIs simple, fast, and beginner-friendly.",
+        "date_posted": "August 10, 2026",
+    },
+    {
+        "id": 2,
+        "author": "Ananya Sharma",
+        "title": "Why Python is So Popular",
+        "content": "Python is widely used because of its readability, huge community, and versatile libraries.",
+        "date_posted": "August 12, 2026",
+    },
+    {
+        "id": 3,
+        "author": "Vikram Reddy",
+        "title": "Getting Started with Web Development",
+        "content": "Understanding APIs, databases, and frontend frameworks is the first step toward becoming a full-stack developer.",
+        "date_posted": "August 15, 2026",
+    },
+]
