@@ -380,4 +380,5 @@ async def populate() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(populate())
+    asyncio.run(populate(),
+                loop_factory=asyncio.SelectorEventLoop)
