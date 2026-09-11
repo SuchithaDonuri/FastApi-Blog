@@ -7,7 +7,7 @@ from sqlalchemy import delete, select, update
 
 import models
 from database import AsyncSessionLocal, engine
-from image_utils import PROFILE_PICS_DIR
+
 from main import app
 
 POPULATE_IMAGES_DIR = Path("populate_images")
@@ -233,19 +233,13 @@ POST_44 = {
 
 
 async def clear_existing_data() -> None:
-    # Delete profile pictures from local storage
-    if PROFILE_PICS_DIR.exists():
-        for file in PROFILE_PICS_DIR.iterdir():
-            if file.is_file() and file.name != ".gitkeep":
-                file.unlink()
-        print(f"Deleted profile pictures from {PROFILE_PICS_DIR}")
-
     # Clear database tables (order respects foreign keys)
     async with AsyncSessionLocal() as db:
         await db.execute(delete(models.PasswordResetToken))
         await db.execute(delete(models.Post))
         await db.execute(delete(models.User))
         await db.commit()
+
     print("Cleared existing data")
 
 
@@ -376,7 +370,7 @@ async def populate() -> None:
     print("\nDone!")
     print(f"  {len(USERS)} users")
     print(f"  {len(POSTS) + 1} posts")
-    print("  Profile pictures saved locally")
+    print("  Profile pictures uploaded to S3")
 
 
 if __name__ == "__main__":
